@@ -2,7 +2,7 @@
 
 > **一个本地优先的个人工作台：把自媒体运营、副业收入和自我管理收进同一块屏幕。**
 
-[![在线体验](https://img.shields.io/badge/%E5%9C%A8%E7%BA%BF%E4%BD%93%E9%AA%8C-%E7%AB%8B%E5%8D%B3%E6%89%93%E5%BC%80-4f46e5?style=for-the-badge)](https://9de3e487b16c476b80a35558b96766f6.app.codebuddy.work/)
+[![在线体验](https://img.shields.io/badge/%E5%9C%A8%E7%BA%BF%E4%BD%93%E9%AA%8C-%E7%AB%8B%E5%8D%B3%E6%89%93%E5%BC%80-4f46e5?style=for-the-badge)](https://huimou612.github.io/knowledge-vault/)
 [![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19-149eca?logo=react)](https://react.dev/)
 [![Tailwind](https://img.shields.io/badge/Tailwind-4-38bdf8?logo=tailwindcss)](https://tailwindcss.com/)
@@ -72,7 +72,9 @@
 
 ### 方式一：直接在线用（最省事）
 
-打开 [在线体验](https://9de3e487b16c476b80a35558b96766f6.app.codebuddy.work/)，点开就能用，数据存在你自己的浏览器里。
+打开 **[huimou612.github.io/knowledge-vault](https://huimou612.github.io/knowledge-vault/)**，点开就能用，数据存在你自己的浏览器里。
+
+这个站点由 GitHub Actions 从 `main` 分支自动构建部署，代码更新后会自动同步。
 
 ### 方式二：本地运行
 
