@@ -1,0 +1,301 @@
+@import "tailwindcss";
+
+/* ===== 2026 设计系统：深色玻璃拟态 + Bento Grid ===== */
+
+@theme {
+  --color-vault-bg: #050a1a;
+  --color-vault-deeper: #020612;
+  --color-vault-card: #0d1530;
+  --color-vault-blue: #3b82f6;
+  --color-vault-cyan: #22d3ee;
+  --color-vault-violet: #8b5cf6;
+  --color-vault-surface: rgba(15, 23, 42, 0.6);
+}
+
+html, body {
+  background: #050a1a;
+  color: #e2e8f0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display",
+    "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: none;
+  scroll-behavior: smooth;
+}
+
+/* ===== Bento Grid 基类 ===== */
+.bento-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 768px) {
+  .bento-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+.bento-wide { grid-column: span 2; }
+.bento-full { grid-column: span 1; }
+@media (min-width: 768px) {
+  .bento-wide { grid-column: span 2; }
+  .bento-full { grid-column: 1 / -1; }
+}
+
+/* ===== 高级玻璃拟态 ===== */
+.glass {
+  position: relative;
+  background: rgba(12, 20, 40, 0.55);
+  border: 1px solid rgba(96, 165, 250, 0.12);
+  border-radius: 1.25rem;
+  backdrop-filter: blur(24px) saturate(1.2);
+  -webkit-backdrop-filter: blur(24px) saturate(1.2);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(96, 165, 250, 0.06) 0%,
+    transparent 50%,
+    rgba(34, 211, 238, 0.03) 100%
+  );
+  pointer-events: none;
+}
+
+.glass:hover {
+  border-color: rgba(96, 165, 250, 0.25);
+  box-shadow:
+    0 8px 40px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 0 40px rgba(59, 130, 246, 0.06);
+  transform: translateY(-2px);
+}
+
+/* 触摸设备 hover 修复 */
+@media (hover: none) {
+  .glass:hover {
+    transform: none;
+    border-color: rgba(96, 165, 250, 0.12);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+  }
+  .glass:active {
+    background: rgba(12, 20, 40, 0.7);
+    border-color: rgba(96, 165, 250, 0.2);
+    transform: scale(0.98);
+  }
+}
+
+/* 强玻璃（弹窗/侧栏） */
+.glass-strong {
+  background: rgba(8, 14, 30, 0.85);
+  border: 1px solid rgba(96, 165, 250, 0.18);
+  backdrop-filter: blur(32px) saturate(1.4);
+  -webkit-backdrop-filter: blur(32px) saturate(1.4);
+  box-shadow: 0 8px 48px rgba(0, 0, 0, 0.4);
+}
+
+/* ===== 渐变文字 ===== */
+.text-gradient {
+  background: linear-gradient(135deg, #60a5fa 0%, #22d3ee 50%, #34d399 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.text-gradient-subtle {
+  background: linear-gradient(135deg, #818cf8 0%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ===== 背景层 ===== */
+.ambient {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 30% 20%, #0c1b3a 0%, #050a1a 60%, #020612 100%);
+}
+.ambient::before {
+  content: "";
+  position: absolute;
+  width: 70vw;
+  height: 70vw;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(30, 64, 175, 0.25) 0%, transparent 70%);
+  top: -20vw;
+  left: -25vw;
+  filter: blur(80px);
+}
+.ambient::after {
+  content: "";
+  position: absolute;
+  width: 55vw;
+  height: 55vw;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(8, 145, 178, 0.18) 0%, transparent 70%);
+  bottom: -20vw;
+  right: -15vw;
+  filter: blur(100px);
+}
+.ambient .scan {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0, transparent 3px,
+    rgba(96, 165, 250, 0.015) 3px, rgba(96, 165, 250, 0.015) 4px
+  );
+  pointer-events: none;
+}
+
+/* ===== 滚动条 ===== */
+::-webkit-scrollbar { width: 6px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(59, 130, 246, 0.25);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(96, 165, 250, 0.45); }
+@media (max-width: 767px) {
+  ::-webkit-scrollbar { width: 0; height: 0; }
+  .scrollable-x { -webkit-overflow-scrolling: touch; overflow-x: auto; }
+}
+
+/* ===== 输入框 ===== */
+input, select, textarea {
+  outline: none;
+  font-size: 16px !important;
+  transition: all 0.2s ease;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: rgba(96, 165, 250, 0.5) !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+select option { background: #050a1a; color: #e2e8f0; }
+
+/* ===== 进度条 ===== */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.progress-fill {
+  background: linear-gradient(90deg, #3b82f6, #22d3ee, #34d399, #3b82f6);
+  background-size: 200% 100%;
+  animation: shimmer 3s linear infinite;
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ===== 头像光环 ===== */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(34, 211, 238, 0.35); }
+  50% { box-shadow: 0 0 32px rgba(34, 211, 238, 0.55); }
+}
+.avatar-ring {
+  background: linear-gradient(135deg, #3b82f6, #22d3ee, #60a5fa);
+  padding: 2px;
+  border-radius: 9999px;
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+
+/* ===== 动画 ===== */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both; }
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-12px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.slide-in { animation: slideIn 0.3s ease both; }
+
+/* ===== 按钮触摸反馈 ===== */
+.touch-btn {
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+.touch-btn:active { transform: scale(0.96); }
+@media (hover: none) { .touch-btn:hover { transform: none; } }
+
+/* ===== 数字字体 ===== */
+.tabular-nums { font-variant-numeric: tabular-nums; }
+
+/* ===== 移动端表格卡片化 ===== */
+@media (max-width: 767px) {
+  .table-card tbody tr {
+    display: block;
+    margin-bottom: 0.75rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(96, 165, 250, 0.1);
+    background: rgba(12, 20, 40, 0.35);
+    padding: 0.75rem;
+    transition: all 0.2s ease;
+  }
+  .table-card tbody tr:active {
+    background: rgba(12, 20, 40, 0.55);
+    transform: scale(0.98);
+  }
+  .table-card thead { display: none; }
+  .table-card tbody td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.35rem 0;
+    border: none;
+  }
+  .table-card tbody td::before {
+    content: attr(data-label);
+    font-size: 0.7rem;
+    color: rgba(148, 163, 184, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+}
+
+/* ===== 分隔线（渐变色） ===== */
+.divider-gradient {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.2), transparent);
+  border: none;
+}
+/* ===== 全局交互动画（Toast / Modal / FAB） ===== */
+@keyframes toastIn {
+  from { opacity: 0; transform: translateY(-12px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.toast-in { animation: toastIn 0.25s cubic-bezier(0.34, 1.4, 0.64, 1); }
+
+@keyframes modalIn {
+  from { opacity: 0; transform: translateY(24px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.modal-in { animation: modalIn 0.28s cubic-bezier(0.34, 1.3, 0.64, 1); }
+
+@keyframes fabPop {
+  from { opacity: 0; transform: scale(0.6); }
+  to { opacity: 1; transform: scale(1); }
+}
+.fab-pop { animation: fabPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+
+/* 长按选中防止文字被选（移动端） */
+.press-item {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+/* ===== 安全区适配（刘海屏 / 底部手势条） ===== */
+.safe-top { padding-top: env(safe-area-inset-top, 0px); }
+.safe-bottom { padding-bottom: env(safe-area-inset-bottom, 0px); }

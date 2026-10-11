@@ -1,0 +1,39 @@
+{
+  "name": "知识仓库 · 个人工作台",
+  "short_name": "知识仓库",
+  "description": "个人第二大脑：任务管理、日程安排、便签备忘录与快捷入口，离线可用、可安装到手机桌面。",
+  "lang": "zh-CN",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "portrait",
+  "background_color": "#050507",
+  "theme_color": "#050507",
+  "categories": ["productivity", "utilities", "business"],
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    { "name": "任务管理", "url": "/tasks" },
+    { "name": "学习中心", "url": "/learning" },
+    { "name": "知识库", "url": "/knowledge" }
+  ]
+}
