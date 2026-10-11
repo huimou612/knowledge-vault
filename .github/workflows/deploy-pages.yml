@@ -32,6 +32,9 @@ jobs:
 
       - name: Build static site
         run: npm run build
+        env:
+          # Pages 部署在 /knowledge-vault/ 子路径下，需要让 Next 生成正确的资源前缀
+          PAGES_BASE_PATH: /knowledge-vault
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
