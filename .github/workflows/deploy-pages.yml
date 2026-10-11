@@ -28,7 +28,9 @@ jobs:
           cache: npm
 
       - name: Install dependencies
-        run: npm ci
+        # 用 npm install 而非 npm ci：lock 文件在 Windows 上生成，
+        # 未包含 Linux 平台的可选依赖（sharp 的各平台二进制），npm ci 会因此报错。
+        run: npm install --no-audit --no-fund
 
       - name: Build static site
         run: npm run build
